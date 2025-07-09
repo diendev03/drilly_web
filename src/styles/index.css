@@ -1,0 +1,5 @@
+/* CSS global, biến tailwind, theme... */
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
