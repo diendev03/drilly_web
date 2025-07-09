@@ -12,31 +12,7 @@ Drilly Web là frontend app dùng React + Vite, hướng đến quản lý tài 
 ---
 
 ## ✅ Cấu trúc thư mục
-src/
-│
-├── assets/ # Hình ảnh, icon, fonts, v.v.
-├── components/ # Component tái sử dụng (button, modal,...)
-├── features/ # Mỗi tính năng là 1 module độc lập
-│ └── [featureName]/
-│ ├── components/ # Component riêng của feature
-│ ├── hooks/ # Custom hook riêng
-│ ├── pages/ # Page chính của feature (gắn route)
-│ ├── services/ # Gọi API (dùng repo)
-│ ├── repository/ # Giao tiếp API (axios, fetch,...)
-│ ├── models/ # Kiểu dữ liệu (interface, type)
-│ ├── slices/ # Redux slice (nếu dùng redux)
-│ └── index.ts # Export các thành phần
-│
-├── routes/ # Định nghĩa route toàn app
-├── app/ # Cấu hình app: redux store, router, theme, i18n...
-├── utils/ # Hàm dùng chung toàn app
-├── constants/ # Biến tĩnh, enums, app config
-├── layouts/ # Giao diện layout (AdminLayout, AuthLayout,...)
-├── hooks/ # Custom hooks dùng chung
-├── providers/ # Context providers
-├── styles/ # Global styles (CSS/SCSS/Tailwind)
-├── main.tsx # Entry point
-└── App.tsx # Component gốc
+<pre lang="bash"><code>src/ ├── assets/ # Hình ảnh, icon, fonts, v.v. ├── components/ # Component tái sử dụng (button, modal,...) ├── features/ # Mỗi tính năng là 1 module độc lập │ └── [featureName]/ │ ├── components/ # Component riêng của feature │ ├── hooks/ # Custom hook riêng │ ├── pages/ # Page chính của feature (gắn route) │ ├── services/ # Gọi API (dùng repo) │ ├── repository/ # Giao tiếp API (axios, fetch,...) │ ├── models/ # Kiểu dữ liệu (interface, type) │ ├── slices/ # Redux slice (nếu dùng redux) │ └── index.ts # Export các thành phần ├── routes/ # Định nghĩa route toàn app ├── app/ # Cấu hình app: redux store, router, theme, i18n... ├── utils/ # Hàm dùng chung toàn app ├── constants/ # Biến tĩnh, enums, app config ├── layouts/ # Giao diện layout (AdminLayout, AuthLayout,...) ├── hooks/ # Custom hooks dùng chung ├── providers/ # Context providers ├── styles/ # Global styles (CSS/SCSS/Tailwind) ├── main.tsx # Entry point └── App.tsx # Component gốc </code></pre>
 
 ---
 
@@ -51,23 +27,7 @@ src/
 ---
 
 ## 📦 Ví dụ: `features/account/`
-features/
-└── account/
-├── pages/
-│ └── AccountPage.tsx
-├── components/
-│ └── AccountCard.tsx
-├── services/
-│ └── account.service.ts # Logic xử lý
-├── repository/
-│ └── account.repo.ts # Gọi axios.get/post
-├── models/
-│ └── account.model.ts # Kiểu dữ liệu: interface Account { ... }
-├── slices/
-│ └── account.slice.ts # Redux slice (nếu cần)
-└── index.ts # Export các thành phần
-
-
+<pre lang="bash"><code>features/ └── account/ ├── pages/ │ └── AccountPage.tsx # Giao diện trang account ├── components/ │ └── AccountCard.tsx # Component riêng của account ├── services/ │ └── account.service.ts # Logic xử lý (dùng trong hook/page) ├── repository/ │ └── account.repo.ts # Gọi axios.get/post (liên lạc API) ├── models/ │ └── account.model.ts # Kiểu dữ liệu: interface Account { ... } ├── slices/ │ └── account.slice.ts # Redux slice (nếu dùng Redux) └── index.ts # Export các thành phần trong feature </code></pre>
 ---
 
 ## 📌 Ghi chú
