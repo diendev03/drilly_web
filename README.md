@@ -1,69 +1,80 @@
-# React + TypeScript + Vite
+# 🧩 Drilly Web
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Drilly Web là frontend app dùng React + Vite, hướng đến quản lý tài chính cá nhân, theo mô hình **Clean Architecture**.
 
-Currently, two official plugins are available:
+## 🚀 Tech stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ⚛️ React + TypeScript + Vite
+- 📦 Folder theo feature (feature-first)
+- 📡 API: RESTful (kết nối với `drilly-api`)
+- 🔌 State Management: Tùy chọn Redux Toolkit, Zustand, React Query
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## ✅ Cấu trúc thư mục
+src/
+│
+├── assets/ # Hình ảnh, icon, fonts, v.v.
+├── components/ # Component tái sử dụng (button, modal,...)
+├── features/ # Mỗi tính năng là 1 module độc lập
+│ └── [featureName]/
+│ ├── components/ # Component riêng của feature
+│ ├── hooks/ # Custom hook riêng
+│ ├── pages/ # Page chính của feature (gắn route)
+│ ├── services/ # Gọi API (dùng repo)
+│ ├── repository/ # Giao tiếp API (axios, fetch,...)
+│ ├── models/ # Kiểu dữ liệu (interface, type)
+│ ├── slices/ # Redux slice (nếu dùng redux)
+│ └── index.ts # Export các thành phần
+│
+├── routes/ # Định nghĩa route toàn app
+├── app/ # Cấu hình app: redux store, router, theme, i18n...
+├── utils/ # Hàm dùng chung toàn app
+├── constants/ # Biến tĩnh, enums, app config
+├── layouts/ # Giao diện layout (AdminLayout, AuthLayout,...)
+├── hooks/ # Custom hooks dùng chung
+├── providers/ # Context providers
+├── styles/ # Global styles (CSS/SCSS/Tailwind)
+├── main.tsx # Entry point
+└── App.tsx # Component gốc
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 🧠 Tư duy Clean Architecture
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **UI (components/pages)** chỉ hiển thị → không gọi API
+- **Hooks/service** xử lý logic nghiệp vụ → gọi repository
+- **Repository** là nơi gọi API → có thể mock/test/dễ thay đổi
+- **Model** để typing dữ liệu từ BE
+- **Tách theo feature**, không tách theo layer (feature-first)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📦 Ví dụ: `features/account/`
+features/
+└── account/
+├── pages/
+│ └── AccountPage.tsx
+├── components/
+│ └── AccountCard.tsx
+├── services/
+│ └── account.service.ts # Logic xử lý
+├── repository/
+│ └── account.repo.ts # Gọi axios.get/post
+├── models/
+│ └── account.model.ts # Kiểu dữ liệu: interface Account { ... }
+├── slices/
+│ └── account.slice.ts # Redux slice (nếu cần)
+└── index.ts # Export các thành phần
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+
+---
+
+## 📌 Ghi chú
+
+- Dự án đang phát triển song song với `drilly-api` (Node.js + MySQL)
+- Mục tiêu hướng đến: mở rộng tính năng, dễ bảo trì, dễ teamwork
+
+---
+
+
